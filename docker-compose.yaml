@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  mysql-getworkgivework:
+    container_name: mysql-getworkgivework
+    image: mysql
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=my_app
+      - MYSQL_PASSWORD=my_app
+      - MYSQL_USER=my_app
+      - MYSQL_DATABASE=getworkgivework
+    volumes:
+      - ./mysqlDB:/var/lib/meinsql/data
+  phpmyadmin-getworkgivework:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-getworkgivework
+    ports:
+      - 8080:80
+    depends_on:
+        - mysql-getworkgivework
+    environment:
+        PMA_HOST: mysql-getworkgivework
+    restart: always
+    
