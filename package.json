@@ -30,6 +30,7 @@
     "passport-auth0": "^1.4.3",
     "passport-jwt": "^4.0.1",
     "puppeteer": "^20.2.1",
-    "sequelize": "^6.31.1"
+    "sequelize": "^6.31.1",
+    "socket.io": "^4.6.2"
   }
 }
