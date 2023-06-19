@@ -5,7 +5,7 @@ import dashboardRepository from '../repository/dashboard-repository.js';
 
 
 export const createUser = async (pId, profileImage) => {
-    const fileName = `getworkgivework_${uuidv4()}_${profileImage.originalname}`;
+    const fileName = `getworkgivework_${uuidv4()}`;
     const profileImagePath = await s3Service.uploadFile(profileImage.buffer, fileName, process.env.AWS_BUCKET_NAME);
   
     const userImage = {

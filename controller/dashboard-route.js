@@ -75,7 +75,7 @@ router.get("/image", async (req, res) => {
     );
 
     res.setHeader("Content-Disposition", `inline; filename="${fileKey}"`);
-    res.setHeader("Content-Type", "image/png"); // Değiştirilmesi gereken MIME türüne göre ayarlayın
+    res.setHeader("Content-Type", "image/png"); 
 
     fileStream.pipe(res);
   } catch (error) {

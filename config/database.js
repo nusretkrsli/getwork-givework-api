@@ -2,8 +2,8 @@ import sequelize from './connection.js';
 import Contact from "../model/contact-model.js";
 import User from "../model/user-model.js";
 
-User.hasMany(Contact, { foreignKey: 'userId', onDelete: 'CASCADE' });
-Contact.belongsTo(User, { foreignKey: 'userId' });
+User.hasMany(Contact);
+Contact.belongsTo(User);
 
 
 const connectToDatabase = async () => {
