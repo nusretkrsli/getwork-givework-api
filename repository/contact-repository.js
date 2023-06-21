@@ -1,10 +1,14 @@
 import Contact from "../model/contact-model.js";
 
-const getAllMassage = async (order = "ASC") => {
-  const message = await Contact.findAll({ order: [["createdAt", order]] });
-  return message;
-};
 
+const getAllMessages = async () => {
+  try {
+    const messages = await Contact.findAll();
+    return messages;
+  } catch (error) {
+    throw new Error("error while getting users");
+  }
+};
 const getMessagesByUserId = async (userId, order) => {
   try {
     const messages = await Contact.findAll({
@@ -28,6 +32,6 @@ const createMessage = async (pMessage) => {
 
 export default {
   getMessagesByUserId, //
-  getAllMassage, //
+  getAllMessages, //
   createMessage, //
 };

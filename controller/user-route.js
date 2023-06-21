@@ -1,7 +1,6 @@
 import express from 'express';
 import nodemailer from 'nodemailer'
-import userRepository from '../repository/user-repository.js'
-// import jwtCheck from "../config/auth0.js";
+import userRepository from '../repository/user-repository.js';
 import * as dotenv from 'dotenv' 
 dotenv.config()
 

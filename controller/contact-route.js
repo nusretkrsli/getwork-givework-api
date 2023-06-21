@@ -1,6 +1,6 @@
 import express from "express";
 import contactRepository from "../repository/contact-repository.js";
-import nodemailer from 'nodemailer'
+import nodemailer from "nodemailer";
 import User from "../model/user-model.js";
 const router = express.Router();
 
@@ -12,7 +12,7 @@ router.get("/", async (req, res, next) => {
     if (userId) {
       messages = await contactRepository.getMessagesByUserId(userId, order);
     } else {
-      messages = await contactRepository.getAllMassage(order);
+      messages = await contactRepository.getAllMessages(order);
     }
     return res.status(200).send(messages);
   } catch (error) {
@@ -28,8 +28,8 @@ router.post("/", async (req, res, next) => {
 
     const user = await User.findOne({
       where: {
-        id: userId
-      }
+        id: userId,
+      },
     });
 
     if (!user) {
@@ -39,7 +39,7 @@ router.post("/", async (req, res, next) => {
     const newMessage = {
       title: body.title,
       content: body.content,
-      UserId: userId
+      UserId: userId,
     };
 
     const createdMessage = await contactRepository.createMessage(newMessage);
@@ -52,25 +52,25 @@ router.post("/", async (req, res, next) => {
 
 async function notifyUser(pEmail) {
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
-  
+    service: "gmail",
+
     auth: {
-      user: 'karslinusret86@gmail.com',
-      pass: "ujdvxyzzudzisldc"
+      user: "karslinusret86@gmail.com",
+      pass: "ujdvxyzzudzisldc",
     },
     tls: { rejectUnauthorized: false },
-    secure: false
+    secure: false,
   });
 
   const info = await transporter.sendMail({
-    from: 'karslinusret86@gmail.com',
+    from: "karslinusret86@gmail.com",
     to: pEmail,
-    subject: 'Information',
-    html: 'your message has been received. you will be informed again about the process..!! GetWorkGiveWork Team',
+    subject: "Information",
+    html: "your message has been received. you will be informed again about the process..!! GetWorkGiveWork Team",
     attachments: [],
   });
 
-  console.log('Message sent: %s', info.messageId);
+  console.log("Message sent: %s", info.messageId);
   return info;
 }
 
